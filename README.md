@@ -171,12 +171,9 @@ As illustrated in the model architecture diagram above, I modified the dataloade
 
 In medical diagnostics, which consists of images, metadata on the patient, and EHR (electronic health records), all the information combined can be helpful. Ideally, the focus is on the pathology though information such as age and gender can play a factor as there are some medical situations unique to these groups. 
 
-There are multiple ways to incorporate metadata, such as using age + gender as loss terms, for Multi-task loss where 
-By adding this metadata information, you are incorporating bias onto the learned feature space, so in this latent space, these biases should help disambiguate between features so hypothetically you should get better performance. 
+There are multiple ways to incorporate metadata, such as using age + gender as loss terms, for Multi-task loss, where a branch is created in parallel after the convolutional layer to directly regress the age and classify gender.  This way, the information that is being learned is to jointly optimize for both the class and the age + gender.  I decided to go with the faster/'easier' option of feeding the features into linear layers outside of Denesenet CNN, and then concatenate this with the outputs of the CNN into the dense classification layer. This way, the outputs of the metadata are in a new feature space.
 
-As you're thinking about it, the easiest way is to add two more neurons to the linear layer.  So since you're using global average pooling, it outputs a tensor of `C` channels.  You would make the receiving linear layer have `C + 2` channels, then concatenate the output from the conv layers with the metadata.
-
-Another method that is more extreme is to use the age + gender as loss terms.  Specifically, you'd make another branch in parallel after the conv layer to directly regress the age and gender.  This way, the information that is being learned is to jointly optimize for both the class and the age + gender.  This is an example of what we call Multi-Task loss where you are optimizing two objectives together - one for classification and one for regression.  I decided to go with the faster/'easier' option of feeding the features into linear layers outside of denesenet CNN, and then concat this with the outputs of the CNN into the dense classification layer. This way, the outputs of the metadata are in a new feature space.
+By adding this metadata information, bias is incorporated onto the learned feature space, so in this latent space, these biases should help disambiguate between features and hypothetically one should get better performance. 
 
 Gender is one hot encoded, and age is normalized by the mean and standard deviation of the training data.  For inference, it is assumed that age will still be in the same as it is in the training data.  
 
