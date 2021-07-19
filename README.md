@@ -1,4 +1,4 @@
-- CheXpert Project](#chexpert-project)
+- [CheXpert Project](#chexpert-project)
   * [CheXpert competition](#chexpert-competition)
     + [My take](#my-take)
   * [Exploratory Data Analysis](#exploratory-data-analysis)
