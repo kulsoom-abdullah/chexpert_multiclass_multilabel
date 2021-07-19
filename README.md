@@ -1,4 +1,27 @@
-[TOC]
+- CheXpert Project](#chexpert-project)
+  * [CheXpert competition](#chexpert-competition)
+    + [My take](#my-take)
+  * [Exploratory Data Analysis](#exploratory-data-analysis)
+    + [Number of diseases (confirmed positive)](#number-of-diseases--confirmed-positive-)
+      - [*Note on Support Devices*](#-note-on-support-devices-)
+    + [Disease Occurrences](#disease-occurrences)
+    + [**Handling of missing labels**](#--handling-of-missing-labels--)
+    + [Feature distributions](#feature-distributions)
+      - [**Note on AP and PA positions**](#--note-on-ap-and-pa-positions--)
+  * [Model Training and Optimization Parameters](#model-training-and-optimization-parameters)
+    + [Pretrained Densenet](#pretrained-densenet)
+    + [Weighted Focal loss](#weighted-focal-loss)
+    + [Optimizer - Adam](#optimizer---adam)
+    + [Image Transforms](#image-transforms)
+    + [Multi Label and Multi Class Classification](#multi-label-and-multi-class-classification)
+      - [Class Labels](#class-labels)
+      - [Formatting labels/class for modeling](#formatting-labels-class-for-modeling)
+      - [Using SKLearn for Multilabel/Multiclass Validation](#using-sklearn-for-multilabel-multiclass-validation)
+    + [Hyperparameters](#hyperparameters)
+    + [PyTorch LRFinder](#pytorch-lrfinder)
+  * [Incorporating Metadata](#incorporating-metadata)
+      - [Note on Heat Maps](#note-on-heat-maps)
+  * [Inference function](#inference-function)
 
 # CheXpert Project 
 
@@ -42,7 +65,7 @@ It is not considered a finding according to the labels. See the EDA notebook for
 Here I first sum the positive labels of a disease using the temp dataframe I created (where -1.0 is replaced with 0, so it does not get in the sum calcuation)
 This goes into a dictionary that I use to store the number of positive occurances for each disease.  Then I replace the NANs in the train and valid dataframes with -1.0, the negative class.
 
-![disease_count_after](/Users/kbak/Downloads/chexpert/images/disease_count_after.png)
+![disease_count_after](images/disease_count_after.png)
 
 ### **Handling of missing labels**
 
@@ -60,7 +83,7 @@ Therefore I used the following -
 Below are bar charts of cateogorical features and histograms for numerical features in the train and validation data.
 Between train and validation, they appear similiarly distributed enough to assume it is fine. I also base this on the literature explaining that they did stratified train/test splits.
 
-![variable_distributions](/Users/kbak/Downloads/chexpert/images/variable_distributions.png)
+![variable_distributions](images/variable_distributions.png)
 
 #### **Note on AP and PA positions**
 According to an explanation [here](https://www.med-ed.virginia.edu/courses/rad/cxr/technique3chest.html): 
@@ -79,7 +102,7 @@ Using Pretrained Densenet weights, and changing the last layer to output 13 clas
 
 This requires the weights to be passed through a `Relu`, then `adaptive_avg_pool2d`, then flattened out before this last classifier layer. When metadata is used, it is concatenated with the output of this flattened vector and then passed through the last classifier layer.
 
-![model_arch](/Users/kbak/Downloads/chexpert/images/model_arch.png)
+![model_arch](images/model_arch.png)
 
 
 
@@ -89,7 +112,7 @@ Adjusting the loss function is an option to handling imbalanced classes vs a wei
 
 I used the PyTorch implementation on this blog [post](https://amaarora.github.io/2020/06/29/FocalLoss.html) as Weighted Focal loss is currently not supported in PyTorch.  It is in Tensorflow, known as [SigmoidFocalCrossEntropy](https://www.tensorflow.org/addons/api_docs/python/tfa/losses/SigmoidFocalCrossEntropy).
 
-![FL](/Users/kbak/Downloads/chexpert/images/FL.png)
+![FL](images/FL.png)
 
 When $\gamma=0$ then the equation is Cross Entropy Loss. For $\gamma>0$, the loss lowers for the well classified examples, helping the hard to classify examples more weight in the loss. It does this by adding the a multiplicative factor to the Cross Entropy loss $(1 − p_t)^\gamma$ where $p_t$ is the probability of the ground truth label, or the actual probabilities of the predictions.
 
@@ -128,7 +151,7 @@ Class 2 (Uncertain) becomes 001
 
 The data loader class does the label formatting work.  Below is an illustration for one xray.
 
-![chexpert-multi class vector](/Users/kbak/Downloads/chexpert/images/chexpert-multi class vector.png)
+![chexpert-multi class vector](images/chexpert-multi class vector.png)
 
 
 
@@ -152,14 +175,6 @@ Batch size of 16 and 4 number of workers were the most optimal.
 ### PyTorch LRFinder
 
 In addition to intuition, I used the tweaked fast.ai version of [LRFinder](https://github.com/davidtvs/pytorch-lr-finder) to help me determine what learning rate to use for each of the runs.
-
-### Train Experiments
-
-### Insert a section on the steps you took for training, first it was a part of the train (AP, and something else), then all images, then incrporant the meta data (can use the flow chart you have)
-
-I can give a summary of the results of each, and then point to a detailed results section with last best results 
-
-
 
 ## Incorporating Metadata
 

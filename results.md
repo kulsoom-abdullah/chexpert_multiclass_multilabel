@@ -1,4 +1,46 @@
-[TOC]
+- [Results](#results)
+  * [Chexpert paper](#chexpert-paper)
+  * [Experiment: Training on all images](#experiment--training-on-all-images)
+    + [Training Run #1](#training-run--1)
+      - [ROC AUC Graphs for last Epoch 3](#roc-auc-graphs-for-last-epoch-3)
+      - [Accuracy Graph of the labels over Epochs](#accuracy-graph-of-the-labels-over-epochs)
+      - [Table of results](#table-of-results)
+    + [Training Run #2](#training-run--2)
+      - [ROC AUC Graphs for last Epoch 16](#roc-auc-graphs-for-last-epoch-16)
+      - [Accuracy Graph of the labels to epoch 16](#accuracy-graph-of-the-labels-to-epoch-16)
+      - [Table of results](#table-of-results-1)
+    + [Training Run #3](#training-run--3)
+      - [ROC AUC Graphs for last Epoch 11](#roc-auc-graphs-for-last-epoch-11)
+      - [Accuracy Graph of the labels](#accuracy-graph-of-the-labels)
+      - [Table of results](#table-of-results-2)
+  * [Experiment: Incorporating Metadata](#experiment--incorporating-metadata)
+    + [Training Run #1](#training-run--1-1)
+      - [ROC AUC Graphs for last Epoch 2](#roc-auc-graphs-for-last-epoch-2)
+      - [Accuracy Graph of the labels over all Epochs](#accuracy-graph-of-the-labels-over-all-epochs)
+      - [Table of Results](#table-of-results)
+    + [Training Run #2](#training-run--2-1)
+      - [ROC AUC Graphs for last Epoch at 3](#roc-auc-graphs-for-last-epoch-at-3)
+      - [Accuracy Graph of the labels over all Epochs](#accuracy-graph-of-the-labels-over-all-epochs-1)
+      - [Table of Results](#table-of-results-1)
+    + [Training Run #3](#training-run--3-1)
+      - [ROC AUC Graphs for last Epoch at 4th](#roc-auc-graphs-for-last-epoch-at-4th)
+      - [Accuracy Graph of the labels over Epochs](#accuracy-graph-of-the-labels-over-epochs-1)
+      - [Table of Results](#table-of-results-2)
+    + [Training Run #4](#training-run--4)
+      - [ROC AUC Graphs for last Epoch at 8th](#roc-auc-graphs-for-last-epoch-at-8th)
+      - [Accuracy Graph of the labels over Epochs](#accuracy-graph-of-the-labels-over-epochs-2)
+      - [Table of Results](#table-of-results-3)
+- [Summary of results](#summary-of-results)
+  * [ROC AUC, Precision, Recall, F1](#roc-auc--precision--recall--f1)
+      - [Positive Class:](#positive-class-)
+      - [Negative Class](#negative-class)
+    + [Image Only](#image-only)
+    + [Image+Metadata](#image-metadata)
+  * [Accuracy](#accuracy)
+    + [Image Only](#image-only-1)
+    + [Image+Metadata](#image-metadata-1)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # Results
 
@@ -909,3 +951,4 @@ The accuracy is constant across epochs and the same for both Image only and Imag
 ### Image+Metadata
 
 ![Image+Meta Accuracy](images/accuracies_t4_alle_meta.png)
+
