@@ -151,7 +151,7 @@ Class 2 (Uncertain) becomes 001
 
 The data loader class does the label formatting work.  Below is an illustration for one xray.
 
-![chexpert-multi class vector](images/chexpert-multi class vector.png)
+![chexpert-multi class vector](images/chexpert_multi_class_vector.png)
 
 
 
