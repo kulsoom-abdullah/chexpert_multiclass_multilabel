@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 - [CheXpert Project](#chexpert-project)
+=======
+- CheXpert Project](#chexpert-project)
+>>>>>>> 973c96e... added TOC
   * [CheXpert competition](#chexpert-competition)
     + [My take](#my-take)
   * [Exploratory Data Analysis](#exploratory-data-analysis)
