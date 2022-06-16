@@ -25,6 +25,8 @@
 
 # CheXpert Project 
 
+#### Update June 2022: For fun, I tried ViT.  You can check the document [ViT_Results.md](ViT_Results.md) and notebook [vit.ipynb](vit.ipynb) . The rest of this README describes the CNN work I did last year.
+
 [CheXpert](https://stanfordmlgroup.github.io/competitions/chexpert/) is a large public dataset for chest radiograph interpretation, consisting of 224,316 chest radiographs of 65,240 patients. 14 observations can be made by radiologists as positive, negative, or uncertain. This dataset is also released with MIMIC-CXR, a large dataset of 371,920 chest x-rays associated with 227,943 imaging studies sourced.  
 
 A study usually consists of two images where one is a front and other is a lateral view. The 14 labels for each image were extracted from free text radiologly reports using an NLP tool, CheXpert labeler. 
